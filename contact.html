@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التواصل | موقعي الاحترافي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #6c5ce7;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            color: #a29bfe;
+            margin-bottom: 15px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #6c5ce7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: #5b4fcf;
+            transform: translateY(-3px);
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: transform 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+        
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: #6c5ce7;
+        }
+        
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #a29bfe;
+        }
+        
+        .contact-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #475569;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .contact-link.whatsapp { background: #25D366; }
+        .contact-link.telegram { background: #0088cc; }
+        .contact-link.channel { background: #8e44ad; }
+        .contact-link.email { background: #ea4335; }
+        
+        .contact-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                margin: 30px auto;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1><i class="fas fa-comments"></i> صفحة التواصل المتقدم</h1>
+        <p>اختر طريقة التواصل المناسبة لك</p>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+        </a>
+    </header>
+    
+    <div class="contact-container">
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h3>واتساب مباشر</h3>
+            <p>تواصل معنا مباشرة عبر واتساب للاستفسارات السريعة</p>
+            <a href="https://wa.me/201234567890" target="_blank" class="contact-link whatsapp">
+                <i class="fab fa-whatsapp"></i> ابدأ محادثة واتساب
+            </a>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fab fa-telegram-plane"></i>
+            </div>
+            <h3>قناة التليجرام</h3>
+            <p>انضم لقناتنا على التليجرام للحصول على آخر التحديثات</p>
+            <a href="https://t.me/channelname" target="_blank" class="contact-link channel">
+                <i class="fab fa-telegram"></i> انضم للقناة
+            </a>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <h3>المستخدم الشخصي</h3>
+            <p>تواصل معي مباشرة على التليجرام للمحادثات الخاصة</p>
+            <a href="https://t.me/username" target="_blank" class="contact-link telegram">
+                <i class="fab fa-telegram-plane"></i> مراسلة مباشرة
+            </a>
+        </div>
+        
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h3>البريد الإلكتروني</h3>
+            <p>أرسل لنا بريداً إلكترونياً للاستفسارات الرسمية</p>
+            <a href="mailto:example@domain.com" class="contact-link email">
+                <i class="fas fa-paper-plane"></i> إرسال بريد إلكتروني
+            </a>
+        </div>
+    </div>
+</body>
+</html>
