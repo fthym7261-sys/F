@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الاحترافي | مشغل تلقائي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== CSS الكامل مع خلفية متحركة ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --whatsapp: #25D366;
+            --telegram: #0088cc;
+            --channel: #8e44ad;
+            --bg-dark: #0f172a;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #334155);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* الخلفية المتحركة بالجسيمات */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(37, 211, 102, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 136, 204, 0.1) 0%, transparent 50%);
+        }
+
+        /* تأثير الوهج */
+        .glow-effect {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.3) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            z-index: -1;
+            animation: floatGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-100px, 100px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* الهيدر */
+        .hero-header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 5px 15px rgba(108, 92, 231, 0.3); }
+            to { text-shadow: 0 5px 25px rgba(108, 92, 231, 0.6), 0 0 30px rgba(108, 92, 231, 0.4); }
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* مشغل الموسيقى */
+        .music-player {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px;
+            margin: 40px auto;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .player-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #a29bfe;
+        }
+
+        .player-title i {
+            font-size: 2.2rem;
+        }
+
+        .audio-container {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        audio {
+            width: 100%;
+            height: 60px;
+            border-radius: 15px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #1e293b;
+            border-radius: 15px;
+        }
+
+        /* أزرار التواصل */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            min-height: 100px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn i {
+            font-size: 1.8rem;
+            margin-left: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            grid-column: 1 / -1;
+            font-size: 1.6rem;
+        }
+
+        .whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: white; }
+        .telegram { background: linear-gradient(135deg, #0088cc, #005c8a); color: white; }
+        .channel { background: linear-gradient(135deg, #8e44ad, #6c3483); color: white; }
+
+        .btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        /* الفوتر */
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* الأنيميشنات */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* التجاوب مع الهواتف */
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .tagline { font-size: 1.4rem; }
+            .buttons-grid { grid-template-columns: 1fr; }
+            .btn { font-size: 1.2rem; min-height: 85px; }
+            .music-player { padding: 25px; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- الخلفية المتحركة -->
+    <div class="particles-bg"></div>
+    <div class="glow-effect"></div>
+
+    <div class="container">
+        <!-- الهيدر الرئيسي -->
+        <header class="hero-header">
+            <h1 class="logo">موقعي الاحترافي</h1>
+            <p class="tagline">
+                تصميم عملاق متحرك مع مشغل أغنية تلقائي <br>
+                وجميع وسائل التواصل في مكان واحد
+            </p>
+        </header>
+
+        <!-- مشغل الموسيقى -->
+        <section class="music-player">
+            <div class="player-title">
+                <i class="fas fa-music"></i>
+                <span>مشغل أغنية الترحيب التلقائي</span>
+            </div>
+            
+            <div class="audio-container">
+                <audio id="welcomeAudio" autoplay controls loop>
+                    <!-- ضع رابط الأغنية هنا -->
+                    <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+                    <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/ogg">
+                    المتصفح لا يدعم تشغيل الصوت. حاول استخدام Chrome أو Firefox
+                </audio>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px; color: #94a3b8; font-size: 1.1rem;">
+                🔊 الأغنية تعمل تلقائياً عند دخول الموقع
+            </p>
+        </section>
+
+        <!-- أزرار التواصل -->
+        <div class="buttons-grid">
+            <!-- الزر الرئيسي للانتقال لصفحة التواصل -->
+            <a href="contact.html" class="btn btn-primary">
+                <i class="fas fa-door-open"></i>
+                إضغط هنا للدخول إلى صفحة التواصل المتقدمة
+            </a>
+
+            <!-- أزرار التواصل المباشرة -->
+            <a href="https://wa.me/201234567890" target="_blank" class="btn whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                واتساب مباشر
+            </a>
+            
+            <a href="https://t.me/username" target="_blank" class="btn telegram">
+                <i class="fab fa-telegram-plane"></i>
+                تليجرام مباشر
+            </a>
+            
+            <a href="https://t.me/channelname" target="_blank" class="btn channel">
+                <i class="fab fa-telegram"></i>
+                قناة التليجرام
+            </a>
+        </div>
+
+        <!-- الفوتر -->
+        <footer class="footer">
+            <p>© 2023 موقع احترافي | جميع الحقوق محفوظة</p>
+            <p style="margin-top: 10px; font-size: 1rem;">
+                <i class="fas fa-code"></i> تم التطوير بتقنيات HTML5, CSS3 & JavaScript
+            </p>
+        </footer>
+    </div>
+
+    <!-- جافاسكريبت -->
+    <script>
+        // تشغيل الموسيقى تلقائياً مع معالجة الأخطاء
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('welcomeAudio');
+            let played = false;
+            
+            // محاولة التشغيل عند تحميل الصفحة
+            setTimeout(() => {
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('التشغيل التلقائي متوقف. يحتاج تفاعل المستخدم.');
+                        
+                        // إضافة زر لتشغيل الموسيقى يدوياً
+                        const musicPlayer = document.querySelector('.music-player');
+                        const manualPlayBtn = document.createElement('button');
+                        manualPlayBtn.innerHTML = '<i class="fas fa-play"></i> اضغط لتشغيل الموسيقى';
+                        manualPlayBtn.style.cssText = `
+                            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+                            color: white;
+                            border: none;
+                            padding: 15px 30px;
+                            border-radius: 15px;
+                            font-size: 1.1rem;
+                            font-weight: bold;
+                            margin-top: 20px;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                            width: 100%;
+                            transition: all 0.3s;
+                        `;
+                        
+                        manualPlayBtn.addEventListener('mouseenter', () => {
+                            manualPlayBtn.style.transform = 'scale(1.05)';
+                        });
+                        
+                        manualPlayBtn.addEventListener('mouseleave', () => {
+                            manualPlayBtn.style.transform = 'scale(1)';
+                        });
+                        
+                        manualPlayBtn.addEventListener('click', () => {
+                            audio.play();
+                            manualPlayBtn.style.display = 'none';
+                        });
+                        
+                        musicPlayer.appendChild(manualPlayBtn);
+                    });
+                }
+            }, 1000);
+            
+            // إضافة تأثيرات للأزرار
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // رسالة ترحيبية في الكونسول
+            console.log('%c🎵 موقع موسيقى احترافي 🎨', 'color: #6c5ce7; font-size: 18px; font-weight: bold;');
+            console.log('%cأهلاً بك في الموقع! تم تحميل جميع العناصر بنجاح.', 'color: #a29bfe;');
+        });
+        
+        // تأثيرات إضافية للخلفية
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: ${Math.random() * 5 + 2}px;
+                height: ${Math.random() * 5 + 2}px;
+                background: rgba(108, 92, 231, ${Math.random() * 0.4 + 0.1});
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: -1;
+            `;
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            
+            document.body.appendChild(particle);
+            
+            // تحريك الجسيم
+            const duration = Math.random() * 20 + 10;
+            const keyframes = [
+                { transform: `translate(0, 0)` },
+                { transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }
+            ];
+            
+            particle.animate(keyframes, {
+                duration: duration * 1000,
+                iterations: Infinity,
+                direction: 'alternate'
+            });
+            
+            // إزالة الجسيم بعد فترة
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+        
+        // إنشاء جسيمات متحركة
+        for(let i = 0; i < 30; i++) {
+            setTimeout(() => createParticle(), i * 500);
+        }
+        
+        // جسيمات مستمرة
+        setInterval(() => {
+            if(Math.random() > 0.7) createParticle();
+        }, 1000);
+    </script>
+</body>
+</html>
